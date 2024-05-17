@@ -31,7 +31,7 @@
         
 </div>
 <div  style="border: 1px solid black;class="container mt-5">
-    <h1 class="text-center">Spa woman</h1>
+    <h1 class="text-center">Spa for woman</h1>
 <div class="row">
     <div class="col-lg-4 col-md-6 mb-4">
         <div style="border: 1px solid black;margin:10px;padding:10px;" class="row">

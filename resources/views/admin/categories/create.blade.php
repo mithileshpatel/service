@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('categories.store') }}">
+                        <form method="POST" action="{{ route('categories.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -26,6 +26,10 @@
                                 <input type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <!-- Add more form fields as needed -->
+                            <div class="form-group">
+        <label for="fileUpload">Image upload</label>
+        <input type="file" class="form-control" id="fileUpload" name="image" accept="image/*">
+    </div>
 
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>

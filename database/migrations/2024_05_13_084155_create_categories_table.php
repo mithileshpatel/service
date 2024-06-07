@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('description');
+            $table->json('images')->nullable(); // Column to store image paths, use JSON type
+
             $table->timestamps();
         });
     }

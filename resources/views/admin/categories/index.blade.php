@@ -14,6 +14,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -23,6 +24,13 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->description }}</td>
+                                        <td>
+                                            @if ($category->image)
+                                                <img src="{{ $category->image }}" alt="{{ $category->name }}" style="width: 50px; height: auto;">
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">

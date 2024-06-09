@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <p>&copy; {{ date('Y') }} Service Company. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Service Company. @ All rights reserved.</p>
                 <p>
                     <a href="{{ url('/') }}">Home</a> |
                     <a href="{{ url('/about') }}">About</a> |

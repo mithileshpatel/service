@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="card  h-100 m-2 p-2">
+<div class="card m-2 p-2">
 <h2>Home services at your doorstep</h2>
     <div class="row">
         
-    <div class="card h-100  m-2 p-2">
+    <div class="card   m-5 p-2">
         <div class="col-lg-12 mb-4">
         <h5> What are you looking for?</h5>
             <div class="row">

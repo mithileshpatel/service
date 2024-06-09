@@ -37,7 +37,7 @@
     <h1 class="text-center">Spa for Women</h1>
     <div class="row">
         @foreach($services as $service)
-            @if($service->category == '3')
+            @if($service->category == '2')
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100  m-2 p-2">
                         <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top" alt="Service Image" style="height: 200px;">
@@ -55,7 +55,7 @@
 </div>
 
 <div class="card m-2 p-2">
-    <h1 class="text-center">Spa for Man</h1>
+    <h1 class="text-center">Salon for Man</h1>
     <div class="row">
         @foreach($services as $service)
             @if($service->category == '1')
@@ -76,10 +76,10 @@
 </div>
 
 <div class="card m-2 p-2">
-    <h1 class="text-center">Ac services</h1>
+    <h1 class="text-center">Ac  & Appliance repair</h1>
     <div class="row">
         @foreach($services as $service)
-            @if($service->category == '4')
+            @if($service->category == '3')
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100 m-2 p-2">
                         <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top" alt="Service Image" style="height: 200px;">

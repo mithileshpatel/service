@@ -14,7 +14,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Title</th>
-                                    <th>Description</th>
+                                    
                                     <th>Category ID</th>
                                     <th>Category Name</th>
                                     <th>Images</th>
@@ -27,7 +27,7 @@
                                 @foreach($services as $service)
                                 <tr>
                                     <td>{{ $service->title }}</td>
-                                    <td>{{ $service->description }}</td>
+                                   
                                     <td>{{ $service->category }}</td> <!-- Display category ID -->
                                     <td>{{ $service->categoryName() }}</td> <!-- Display category name -->
                                     <td>
@@ -44,11 +44,13 @@
                                     <td>{{ $service->created_at }}</td>
                                     <td>{{ $service->updated_at }}</td>
                                     <td>
-                                        <a href="{{ route('services.edit', $service->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('services.edit', $service->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                        
                                         <form action="{{ route('services.destroy', $service->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this service?')">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this service?')">Delete</button>
+                                            
                                         </form>
                                     </td>
                                 </tr>

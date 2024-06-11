@@ -26,7 +26,7 @@
         </div>
         <div class="col-lg-5 mb-4">
             <div class="card m-2 p-2">
-                <img src="{{ asset('storage/images/service.webp') }}" class="card-img-top" alt="Service Image">
+                <img src="{{ asset('storage/images/collage.png') }}" class="card-img-top" alt="Service Image">
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
 </div>
 
 <div class="card m-2 p-2">
-    <h1 class="text-center">Spa for Women</h1>
+    <h1 class="text-center">Spa for men's</h1>
     <div class="row">
         @foreach($services as $service)
             @if($service->category == '2')
@@ -55,7 +55,7 @@
 </div>
 
 <div class="card m-2 p-2">
-    <h1 class="text-center">Salon for Man</h1>
+    <h1 class="text-center">Salon for women's</h1>
     <div class="row">
         @foreach($services as $service)
             @if($service->category == '1')

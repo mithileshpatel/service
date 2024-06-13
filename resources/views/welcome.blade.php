@@ -55,7 +55,7 @@
 </div>
 
 <div class="card m-2 p-2">
-    <h1 class="text-center">Salon for women's</h1>
+    <h1 class="text-center">Salon for men's</h1>
     <div class="row">
         @foreach($services as $service)
             @if($service->category == '1')

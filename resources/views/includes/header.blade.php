@@ -30,6 +30,9 @@
     .service-card p {
       color: #666;
     }
+    .card-text a:hover {
+  text-decoration: underline;
+}
   </style>
 
 </head>

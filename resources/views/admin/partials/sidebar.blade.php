@@ -90,32 +90,7 @@
                     </ul>
                 </li>
 
-                <!-- Rooms -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-bed"></i>
-                        <p>
-                            Rooms
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('rooms.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View All Rooms</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('rooms.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add New Room</p>
-                            </a>
-                        </li>
-                        
-                        
-                    </ul>
-                </li>
+            
 
                 <!-- Logout -->
                 <li class="nav-item">

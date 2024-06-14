@@ -61,7 +61,7 @@ cursor: pointer;
   background-color: lightgray; /* Change to desired color on hover */
 }
 
-}
+
   </style>
 
 </head>

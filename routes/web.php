@@ -69,3 +69,4 @@ Route::get('categories/{category}/edit', [CategoryController::class, 'edit'])->n
 Route::put('categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('categories/{id}/removeImage', [CategoryController::class, 'removeImage'])->name('categories.removeImage');
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('show');

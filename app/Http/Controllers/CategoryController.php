@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -104,5 +105,12 @@ class CategoryController extends Controller
 
     return redirect()->route('categories.edit', $category->id)->with('success', 'Image removed successfully.');
 }
-
+public function show($id)
+{
+    // Assuming you have a Category model
+    $category = Category::findOrFail($id);
+    $services = Service::all();
+    // Pass the $category data to the view
+    return view('categories.show', compact('category','services'));
+}
 }

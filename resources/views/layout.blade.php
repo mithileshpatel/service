@@ -22,10 +22,11 @@
 
 
   <script>
-    function navigateToLink() {
-        // Replace '#' with the actual URL you want to navigate to
-        window.location.href = '#';
-    }
+   function navigateToLink(categoryId) {
+    var url = '{{ route("show", ":id") }}';
+    url = url.replace(':id', categoryId);
+    window.location.href = url;
+}
     </script>
 </body>
 </html>

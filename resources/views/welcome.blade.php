@@ -13,7 +13,7 @@
              
                 @foreach($categories as $category)
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card img justify-content-center align-items-center" id="openService" onclick="navigateToLink()">
+                        <div class="card img justify-content-center align-items-center" id="openService" onclick="navigateToLink({{ $category->id }})">
                          <a href="#">   <img  src="{{ $category->image }}" alt="{{ $category->name }}" class="card-img-top" style="width: 50px; height: 50px;  object-fit: cover;"></a>
                             <p class="card-text">
                             <a href="#" class=" text-dark"> <!-- Adding Bootstrap classes to remove default link styles -->
@@ -87,9 +87,10 @@
                         <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top" alt="Service Image" style="height: 200px;">
                         <div class="card-body">
                             <p class="card-title" style="font-size: 14px;">{{ $service->title }}</p>
+                            <a href="{{ route('admin.services.show', $service->id) }}" class="btn btn-primary btn-sm">View Details</a>
                         </div>
                         <!-- <div class="card-footer">
-                            <a href="{{ route('admin.services.show', $service->id) }}" class="btn btn-primary btn-sm">View Details</a>
+                            
                         </div> -->
                     </div>
                 </div>

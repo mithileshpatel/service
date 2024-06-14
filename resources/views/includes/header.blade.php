@@ -30,8 +30,36 @@
     .service-card p {
       color: #666;
     }
-    .card-text a:hover {
-  text-decoration: underline;
+    .card-text a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-text a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: currentColor;
+  transition: width 0.3s ease, right 0.3s ease;
+}
+
+.card-text a:hover::after {
+  width: 100%;
+  right: 0;
+}
+.img{
+  background-color: whitesmoke;
+transition:background-color 0.3s ease;
+}
+.img:hover {
+  background-color: lightgray; /* Change to desired color on hover */
+}
+
 }
   </style>
 

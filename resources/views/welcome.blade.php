@@ -13,8 +13,8 @@
              
                 @foreach($categories as $category)
                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card img justify-content-center align-items-center">
-                            <img src="{{ $category->image }}" alt="{{ $category->name }}" class="card-img-top" style="width: 50px; height: 50px;  object-fit: cover;">
+                        <div class="card img justify-content-center align-items-center" id="openService" onclick="navigateToLink()">
+                         <a href="#">   <img  src="{{ $category->image }}" alt="{{ $category->name }}" class="card-img-top" style="width: 50px; height: 50px;  object-fit: cover;"></a>
                             <p class="card-text">
                             <a href="#" class=" text-dark"> <!-- Adding Bootstrap classes to remove default link styles -->
                                 {{ $category->name }}

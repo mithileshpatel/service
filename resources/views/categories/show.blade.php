@@ -3,7 +3,27 @@
 @extends('layout')
 
 @section('content')
-    
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                @foreach($services as $service)
+                @if($service->category == $category->id)
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card img justify-content-center align-items-center" id="openService" onclick="navigateToLink({{ $category->id }})">
+                     <a href="#">   <img  src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top" style="width: 50px; height: 50px;  object-fit: cover;"></a>
+                        <p class="card-text">
+                        <a href="#" class=" text-dark"> <!-- Adding Bootstrap classes to remove default link styles -->
+                            {{ $service->title }}
+                        </a>
+                    </p>
+                    </div>
+                </div>
+                @endif
+            @endforeach
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+
 <p>Category Name: {{ $category->name }}</p>
     @foreach($services as $service)
     @if($service->category == $category->id)
@@ -24,5 +44,6 @@
     <!-- Add other details as needed -->
     @endif
     @endforeach
-   
+</div></div>
 @endsection
+        

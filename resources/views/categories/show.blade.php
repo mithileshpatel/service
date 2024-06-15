@@ -3,11 +3,13 @@
 @extends('layout')
 
 @section('content')
-<div class="card m-2 p-2">
+<div class="card m-1 p-1">
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-4 col-md-4 mb-4">
+        <h5 class="m-2 p-2">What are you looking for?</h5>
       <div class="card m-2 p-2 shadow-lg">
         <div class="row">
+           
           <!-- Service Cards -->
           @foreach($services as $service)
             @if($service->category == $category->id)
@@ -28,8 +30,10 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 mb-4">
-      <p class="h2">Category Name: {{ $category->name }}</p>
+    <div class="col-lg-4 col-md-6 mb-4 border ">
+        <h5 class="m-2 p-2">Recommended Services</h5>
+        
+      <p class="h6">Category Name: {{ $category->name }}</p>
       <!-- Service Details -->
       @foreach($services as $service)
         @if($service->category == $category->id)

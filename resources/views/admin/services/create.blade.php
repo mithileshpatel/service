@@ -16,6 +16,10 @@
                             <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
                         </div>
                         <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control" name="price" id="price" placeholder="Enter price" value="{{ old('price') }}">
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter description"></textarea>
                         </div>

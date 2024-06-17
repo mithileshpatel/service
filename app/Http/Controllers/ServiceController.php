@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+
 class ServiceController extends Controller
 {
     /**
@@ -23,15 +24,12 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-   
-        public function create()
-        {
-            $categories = Category::all(); // Retrieve all categories
-            return view('admin.services.create', ['categories' => $categories]); // Pass $categories to the view
-        }
-        
-        
+    public function create()
+    {
+        $categories = Category::all(); // Retrieve all categories
+        return view('admin.services.create', ['categories' => $categories]); // Pass $categories to the view
+    }
+
     /**
      * Store a newly created service in storage.
      *
@@ -43,14 +41,15 @@ class ServiceController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
             'description' => 'required|string',
-            'category'=>'required|string',
+            'category' => 'required|string',
+          
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Maximum 10 images with maximum size of 2MB each
         ], [
             'images.*.image' => 'The file must be an image.',
             'images.*.mimes' => 'Only JPG, PNG, JPEG, and GIF files are allowed.',
             'images.*.max' => 'The image size cannot be greater than 2MB.',
-            'images.*.max' => 'Only a maximum of 10 images are allowed.'
         ]);
 
         // Upload and store images
@@ -67,9 +66,11 @@ class ServiceController extends Controller
         // Create a new service instance with the validated data
         $service = Service::create([
             'title' => $validatedData['title'],
+            'price' => $validatedData['price'],
             'description' => $validatedData['description'],
             'images' => $imagePaths, // Store image paths directly without JSON encoding
-            'category'=>$validatedData['category'],
+            
+            'category' => $validatedData['category'],
         ]);
 
         // Redirect back or wherever you want
@@ -84,7 +85,8 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.services.edit', compact('service')); // Render the edit service form
+        $categories = Category::all(); // Retrieve all categories
+        return view('admin.services.edit', compact('service', 'categories')); // Pass $categories to the view
     }
 
     /**
@@ -96,18 +98,32 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
+            'price' => 'required|numeric',
             'description' => 'required|string',
-            'category'=>'required|string',
+            'images' => 'nullable|array',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category' => 'required|string|max:255',
         ]);
 
-        // Update the service instance with the validated data
-        $service->update($validatedData);
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images', 'public');
+                $imagePaths[] = $imagePath;
+            }
+        }
 
-        // Redirect back or wherever you want
-        return redirect()->back()->with('success', 'Service updated successfully.');
+        $service->update($request->only([
+            'title' => $validatedData['title'],
+            'price' => $validatedData['price'],
+            'description' => $validatedData['description'],
+            
+            'category' => $validatedData['category'],
+        ]));
+
+        return redirect()->route('services.edit', $service)->with('success', 'Service updated successfully');
     }
 
     /**
@@ -124,10 +140,18 @@ class ServiceController extends Controller
         // Redirect back or wherever you want
         return redirect()->back()->with('success', 'Service deleted successfully.');
     }
+
+    /**
+     * Remove an image from the specified service.
+     *
+     * @param  \App\Models\Service  $service
+     * @param  string  $image
+     * @return \Illuminate\Http\Response
+     */
     public function removeImage(Service $service, $image)
     {
         // Remove the image from storage
-        Storage::delete('public/images/' . $image);
+        Storage::delete('storage/images/' . $image);
 
         // Remove the image from the service's images array
         $images = $service->images;
@@ -139,6 +163,13 @@ class ServiceController extends Controller
         // Redirect back or wherever you want
         return redirect()->back()->with('success', 'Image removed successfully.');
     }
+
+    /**
+     * Display the specified service.
+     *
+     * @param  \App\Models\Service  $service
+     * @return \Illuminate\Http\Response
+     */
     public function show(Service $service)
     {
         return view('admin.services.show', compact('service'));

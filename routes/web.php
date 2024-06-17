@@ -45,12 +45,7 @@ Route::put('/services/{service}', [ServiceController::class, 'update'])->name('s
 
 
 // Routes for Room CRUD operations
-Route::get('/admin/rooms', [RoomController::class, 'index'])->name('rooms.index');
-Route::get('/admin/rooms/create', [RoomController::class, 'create'])->name('rooms.create');
-Route::post('/admin/rooms', [RoomController::class, 'store'])->name('rooms.store');
-Route::get('/admin/rooms/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
-Route::put('/admin/rooms/{id}', [RoomController::class, 'update'])->name('rooms.update');
-Route::delete('/admin/rooms/{id}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+
 Route::delete('/services/{service}/remove-image/{image}', [ServiceController::class, 'removeImage'])->name('services.removeImage');
 
 

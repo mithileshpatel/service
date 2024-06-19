@@ -4,6 +4,8 @@
 
 @section('content')
 <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
     <h1>Edit Service</h1>
     
     @if(session('success'))
@@ -51,5 +53,5 @@
         
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-</div>
+</div></div></div>
 @endsection

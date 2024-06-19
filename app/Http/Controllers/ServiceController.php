@@ -43,7 +43,7 @@ class ServiceController extends Controller
             'title' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'description' => 'required|string',
-            'category' => 'required|string',
+            'category' => 'required|numeric',
           
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Maximum 10 images with maximum size of 2MB each
         ], [
@@ -83,11 +83,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        $categories = Category::all(); // Retrieve all categories
-        return view('admin.services.edit', compact('service', 'categories')); // Pass $categories to the view
+        $service = Service::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.services.edit', compact('service', 'categories'));
     }
+    
 
     /**
      * Update the specified service in storage.
@@ -104,7 +106,7 @@ class ServiceController extends Controller
             'description' => 'required|string',
             'images' => 'nullable|array',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category' => 'required|string|max:255',
+            'category' => 'required|numeric|max:255',
         ]);
 
         $imagePaths = [];

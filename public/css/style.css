@@ -60,3 +60,42 @@
     background-color: lightgray;
     /* Change to desired color on hover */
 }
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 calc(100% / 3);
+    /* Show three slides at a time */
+    box-sizing: border-box;
+}
+
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1000;
+}
+
+.slide-arrow.left {
+    left: 10px;
+}
+
+.slide-arrow.right {
+    right: 10px;
+}

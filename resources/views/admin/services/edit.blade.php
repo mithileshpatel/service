@@ -14,7 +14,7 @@
         </div>
     @endif
     
-    <form action="{{ route('services.update', $service) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('services.update', $service->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         
@@ -39,7 +39,10 @@
             @if($service->images)
                 <div class="mt-2">
                     @foreach($service->images as $image)
-                        <img src="{{ asset('storage/images/' . $image) }}" alt="Service Image" style="width: 100px;">
+                        <div style="display: inline-block; position: relative;">
+                            <img src="{{ asset('storage/images/' . $image) }}" alt="Service Image" style="width: 100px;">
+                            <a href="{{ route('services.removeImage', ['service' => $service->id, 'image' => $image]) }}" class="btn btn-sm btn-danger" style="position: absolute; top: 0; right: 0;">&times;</a>
+                        </div>
                     @endforeach
                 </div>
             @endif

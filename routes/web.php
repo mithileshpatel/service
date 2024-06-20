@@ -46,7 +46,10 @@ Route::put('/services/{service}', [ServiceController::class, 'update'])->name('s
 
 // Routes for Room CRUD operations
 
-Route::delete('/services/{service}/remove-image/{image}', [ServiceController::class, 'removeImage'])->name('services.removeImage');
+
+// web.php
+Route::get('/services/{service}/remove-image/{image}', [ServiceController::class, 'removeImage'])->name('services.removeImage');
+
 
 
 // Other routes

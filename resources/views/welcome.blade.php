@@ -57,23 +57,24 @@
 </div>
 
 <div class="card m-2 p-2">
-    <h1 class="text-center">Salon for men's</h1>
-    <div class="row">
-        @foreach($services as $service)
-            @if($service->category == '1')
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 m-2 p-2">
-                        <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top" alt="Service Image" style="height: 200px;">
-                        <div class="card-body">
-                            <p class="card-title" style="font-size: 14px;">{{ $service->title }}</p>
+    <h1 class="text-center">Salon for Men's</h1>
+    <div class="slider-container position-relative">
+        <div class="slider-wrapper" id="slider-wrapper">
+            @foreach($services as $service)
+                @if($service->category == '1')
+                    <div class="slide">
+                        <div class="card h-100 m-2 p-2">
+                            <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top" alt="Service Image" style="height: 200px;">
+                            <div class="card-body">
+                                <p class="card-title" style="font-size: 14px;">{{ $service->title }}</p>
+                            </div>
                         </div>
-                        <!-- <div class="card-footer">
-                            <a href="{{ route('admin.services.show', $service->id) }}" class="btn btn-primary btn-sm">View Details</a>
-                        </div> -->
                     </div>
-                </div>
-            @endif
-        @endforeach
+                @endif
+            @endforeach
+        </div>
+        <a href="javascript:void(0)" class="slide-arrow left" onclick="moveLeft()">&#9664;</a>
+        <a href="javascript:void(0)" class="slide-arrow right" onclick="moveRight()">&#9654;</a>
     </div>
 </div>
 

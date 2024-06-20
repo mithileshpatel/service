@@ -98,35 +98,47 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'description' => 'required|string',
-            'images' => 'nullable|array',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category' => 'required|numeric|max:255',
-        ]);
+    public function update(Request $request, $id)
+{
+    // Find the service by its ID
+    $service = Service::findOrFail($id);
 
-        $imagePaths = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('images', 'public');
-                $imagePaths[] = $imagePath;
-            }
+    // Validate the request data
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'description' => 'required|string',
+        'category' => 'required|numeric',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+    ], [
+        'images.*.image' => 'The file must be an image.',
+        'images.*.mimes' => 'Only JPG, PNG, JPEG, and GIF files are allowed.',
+        'images.*.max' => 'The image size cannot be greater than 2MB.',
+    ]);
+
+    // Upload and store images
+    $imagePaths = $service->images; // Get existing images
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            // Store each image and get its path
+            $imageName = $image->getClientOriginalName();
+            $path = $image->storeAs('public/images', $imageName); // Customize the storage path if needed
+            $imagePaths[] = $imageName;
         }
-
-        $service->update($request->only([
-            'title' => $validatedData['title'],
-            'price' => $validatedData['price'],
-            'description' => $validatedData['description'],
-            
-            'category' => $validatedData['category'],
-        ]));
-
-        return redirect()->route('services.edit', $service)->with('success', 'Service updated successfully');
     }
+
+    // Update the service instance with the validated data
+    $service->update([
+        'title' => $validatedData['title'],
+        'price' => $validatedData['price'],
+        'description' => $validatedData['description'],
+        'images' => $imagePaths, // Store image paths directly without JSON encoding
+        'category' => $validatedData['category'],
+    ]);
+
+    // Redirect back or wherever you want
+    return redirect()->back()->with('success', 'Service updated successfully.');
+}
 
     /**
      * Remove the specified service from storage.
@@ -150,21 +162,23 @@ class ServiceController extends Controller
      * @param  string  $image
      * @return \Illuminate\Http\Response
      */
-    public function removeImage(Service $service, $image)
-    {
-        // Remove the image from storage
-        Storage::delete('storage/images/' . $image);
+   // ServiceController.php
+public function removeImage(Service $service, $image)
+{
+    // Remove the image from storage
+    Storage::delete('public/images/' . $image);
 
-        // Remove the image from the service's images array
-        $images = $service->images;
-        if (($key = array_search($image, $images)) !== false) {
-            unset($images[$key]);
-            $service->update(['images' => $images]);
-        }
-
-        // Redirect back or wherever you want
-        return redirect()->back()->with('success', 'Image removed successfully.');
+    // Remove the image from the service's images array
+    $images = $service->images;
+    if (($key = array_search($image, $images)) !== false) {
+        unset($images[$key]);
+        $service->update(['images' => array_values($images)]); // Re-index the array
     }
+
+    // Redirect back or wherever you want
+    return redirect()->back()->with('success', 'Image removed successfully.');
+}
+
 
     /**
      * Display the specified service.

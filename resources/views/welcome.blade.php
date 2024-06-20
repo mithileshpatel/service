@@ -37,8 +37,8 @@
 
 <div class="card m-2 p-2">
     <h1 class="text-center">Spa for women's</h1>
-    <div class="slider-container position-relative">
-        <div class="slider-wrapper" id="slider-wrapper">
+    <div class="row">
+   
         @foreach($services as $service)
             @if($service->category == '2')
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -55,9 +55,7 @@
             @endif
         @endforeach
     </div>
-    <a href="javascript:void(0)" class="slide-arrow left" onclick="moveLeft()">&#9664;</a>
-        <a href="javascript:void(0)" class="slide-arrow right" onclick="moveRight()">&#9654;</a>
-    </div>
+  
 </div>
 
 <div class="card m-2 p-2">
@@ -84,8 +82,8 @@
 
 <div class="card m-2 p-2">
     <h1 class="text-center">Ac  & Appliance repair</h1>
-    <div class="slider-container position-relative">
-        <div class="slider-wrapper" id="slider-wrapper">
+    <div class="row">
+       
         @foreach($services as $service)
             @if($service->category == '3')
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -103,8 +101,6 @@
             @endif
         @endforeach
     </div>
-    <a href="javascript:void(0)" class="slide-arrow left" onclick="moveLeft()">&#9664;</a>
-        <a href="javascript:void(0)" class="slide-arrow right" onclick="moveRight()">&#9654;</a>
-    </div>
+   
 </div>
 @endsection

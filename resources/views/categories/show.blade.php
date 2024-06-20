@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 mb-4 border ">
+    <div class="col-lg-6 col-md-6 mb-4 border ">
         <h5 class="m-2 p-2">Recommended Services</h5>
         
       <p class="h6">Category Name: {{ $category->name }}</p>
@@ -43,6 +43,7 @@
               <div class="card-body">
                 <p class="card-title text-center" style="font-size: 18px;">{{ $service->title }}</p>
               </div>
+              
               <!--
               <div class="card-footer">
                 <a href="{{ route('admin.services.show', $service->id) }}" class="btn btn-primary btn-sm">View Details</a>
@@ -51,8 +52,13 @@
             </div>
           </div>
           <!-- Add other details as needed -->
+          <div class="col-lg-6 col-md-6 mb-4  ">
+            <div class="row">
+            <button class="btn btn-primary" >Add </button>
+            </div></div>
         @endif
       @endforeach
+      
     </div>
   </div></div>
 @endsection

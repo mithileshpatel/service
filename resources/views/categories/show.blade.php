@@ -30,35 +30,32 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-6 col-md-6 mb-4 border ">
-        <h5 class="m-2 p-2">Recommended Services</h5>
-        
+    <div class="col-lg-6 col-md-6 mb-4 border">
+      <h5 class="m-2 p-2">Recommended Services</h5>
+      
       <p class="h6">Category Name: {{ $category->name }}</p>
+      
       <!-- Service Details -->
       @foreach($services as $service)
-        @if($service->category == $category->id)
-          <div class="row">
-            <div class="card h-100 m-2 p-2 shadow">
-              <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top rounded" alt="Service Image" style="height: 200px;">
-              <div class="card-body">
-                <p class="card-title text-center" style="font-size: 18px;">{{ $service->title }}</p>
+          @if($service->category == $category->id)
+              <div class="row">
+                  <div class="card h-50 w-50 m-2 p-2 shadow col-lg-6 col-md-12">
+                      <img src="{{ asset('storage/images/' . $service->images[0]) }}" class="card-img-top rounded" alt="Service Image" style="height: 100px; width:100px;">
+                      <div class="card-body">
+                          <p class="card-title text-left" style="font-size: 18px;">{{ $service->title }}</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12 mb-4">
+                      <div class="row m-2">
+                          <p class="text-left" style="font-size: 14px;">Price: {{ $service->price }} INR</p>
+                          <p class="text-left" style="font-size: 14px;">Description: {{ $service->description }}</p>
+                          <button class="btn btn-primary mt-2">Add</button>
+                      </div>
+                  </div>
               </div>
-              
-              <!--
-              <div class="card-footer">
-                <a href="{{ route('admin.services.show', $service->id) }}" class="btn btn-primary btn-sm">View Details</a>
-              </div>
-              -->
-            </div>
-          </div>
-          <!-- Add other details as needed -->
-          <div class="col-lg-6 col-md-6 mb-4  ">
-            <div class="row">
-            <button class="btn btn-primary" >Add </button>
-            </div></div>
-        @endif
+          @endif
       @endforeach
       
-    </div>
-  </div></div>
+  </div>
+   </div></div>
 @endsection

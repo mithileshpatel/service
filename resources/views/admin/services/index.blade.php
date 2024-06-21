@@ -45,7 +45,8 @@
                                     <td>{{ $service->created_at }}</td>
                                     <td>{{ $service->updated_at }}</td>
                                     <td>
-                                        <a href="{{ route('services.edit', $service->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="{{ route('services.edit', $service->id) }}" target="_blank" class="btn btn-sm btn-primary">Edit</a>
+
                                         
                                         <form action="{{ route('services.destroy', $service->id) }}" method="POST" style="display: inline;">
                                             @csrf

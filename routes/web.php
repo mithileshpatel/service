@@ -9,6 +9,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about',function()
@@ -71,3 +72,10 @@ Route::put('categories/{category}', [CategoryController::class, 'update'])->name
 Route::delete('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('categories/{id}/removeImage', [CategoryController::class, 'removeImage'])->name('categories.removeImage');
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('show');
+
+
+
+
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'getCart'])->name('cart.get');
